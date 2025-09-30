@@ -91,6 +91,58 @@
             "dependsOn": "Prepare program with Security Toolkit"
         },
         {
+            "label": "Prepare program with Security Toolkit (multicore, debug)",
+            "type": "shell",
+            "command": [
+                "cp './out/blinky/HE/debug/blinky.bin' '${config:alif.setools.root}/build/images/alif-img-he.bin';",
+                "cp './out/blinky/HP/debug/blinky.bin' '${config:alif.setools.root}/build/images/alif-img-hp.bin';",
+                "cp './.alif/M55_HE_HP_cfg.json' '${config:alif.setools.root}/alif-img.json';"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Program with Security Toolkit (multicore, debug)",
+            "type": "shell",
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
+            "command": [
+                "./app-gen-toc -f alif-img.json;",
+                "./app-write-mram -p;",
+                "rm ./build/images/alif-img-he.bin;",
+                "rm ./build/images/alif-img-hp.bin;",
+                "rm ./alif-img.json;"
+            ],
+            "problemMatcher": [],
+            "dependsOn": "Prepare program with Security Toolkit (multicore, debug)"
+        },
+        {
+            "label": "Prepare program with Security Toolkit (multicore, release)",
+            "type": "shell",
+            "command": [
+                "cp './out/blinky/HE/release/blinky.bin' '${config:alif.setools.root}/build/images/alif-img-he.bin';",
+                "cp './out/blinky/HP/release/blinky.bin' '${config:alif.setools.root}/build/images/alif-img-hp.bin';",
+                "cp './.alif/M55_HE_HP_cfg.json' '${config:alif.setools.root}/alif-img.json';"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Program with Security Toolkit (multicore, release)",
+            "type": "shell",
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
+            "command": [
+                "./app-gen-toc -f alif-img.json;",
+                "./app-write-mram -p;",
+                "rm ./build/images/alif-img-he.bin;",
+                "rm ./build/images/alif-img-hp.bin;",
+                "rm ./alif-img.json;"
+            ],
+            "problemMatcher": [],
+            "dependsOn": "Prepare program with Security Toolkit (multicore, release)"
+        },
+        {
             "label": "Update TOC with Security Toolkit",
             "type": "shell",
             "options": {"cwd": "${config:alif.setools.root}"},
